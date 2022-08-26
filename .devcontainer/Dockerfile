@@ -4,9 +4,10 @@
 ARG VARIANT="3.15"
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-alpine-${VARIANT}
 
-# Install python/pip
+# Install dependencies - docker, python/pip
 ENV PYTHONUNBUFFERED=1
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python && \
+RUN apk add --update --no-cache docker python3 && \
+    ln -sf python3 /usr/bin/python && \
     python3 -m ensurepip && \
     pip3 install --no-cache --upgrade pip setuptools
 
